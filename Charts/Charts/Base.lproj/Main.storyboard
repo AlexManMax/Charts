@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z3Z-XK-PjH">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="obL-vN-ldY">
+            <objects>
+                <viewController id="vs4-8Q-CUo" customClass="ViewController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ai1-HV-fnm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3E-iX-3PL" customClass="ColumnChartView" customModule="Charts" customModuleProvider="target">
+                                <rect key="frame" x="10" y="251" width="394" height="394"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.27646083047945208" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="B3E-iX-3PL" secondAttribute="height" multiplier="1:1" id="O9D-Vl-0fm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="B3E-iX-3PL" firstAttribute="leading" secondItem="BJg-o1-jTs" secondAttribute="leading" constant="10" id="13M-LD-3Kx"/>
+                            <constraint firstItem="B3E-iX-3PL" firstAttribute="centerY" secondItem="ai1-HV-fnm" secondAttribute="centerY" id="K8m-wd-8Sl"/>
+                            <constraint firstItem="B3E-iX-3PL" firstAttribute="centerX" secondItem="ai1-HV-fnm" secondAttribute="centerX" id="RYl-rl-sjK"/>
+                            <constraint firstItem="BJg-o1-jTs" firstAttribute="trailing" secondItem="B3E-iX-3PL" secondAttribute="trailing" constant="10" id="tXe-NR-B1d"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BJg-o1-jTs"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Y1m-XW-zst"/>
+                    <connections>
+                        <outlet property="collumnChartView" destination="B3E-iX-3PL" id="uMb-mZ-ujk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dx4-5Q-FLG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2103" y="926"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dW6-C5-ZpC">
+            <objects>
+                <navigationController id="z3Z-XK-PjH" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9uj-jQ-avZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Gic-Fc-Bvi" kind="relationship" relationship="rootViewController" id="ReR-4L-fIK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z1C-3T-DeM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="319" y="222"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Gbz-Uc-6aU">
+            <objects>
+                <viewController id="Gic-Fc-Bvi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7uo-Py-raf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Yoy-VY-47W">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvI-Xa-U9w">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="387"/>
+                                        <state key="normal" title="LineCartVC"/>
+                                        <connections>
+                                            <segue destination="Poe-pa-ox4" kind="show" id="JTg-dD-2Sn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvJ-t9-Aih">
+                                        <rect key="frame" x="0.0" y="387" width="414" height="387"/>
+                                        <state key="normal" title="LineCartVC"/>
+                                        <connections>
+                                            <segue destination="vs4-8Q-CUo" kind="show" id="wzH-qo-vMp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="U0Z-EU-RAW" firstAttribute="bottom" secondItem="Yoy-VY-47W" secondAttribute="bottom" id="1Oh-al-82y"/>
+                            <constraint firstItem="Yoy-VY-47W" firstAttribute="leading" secondItem="U0Z-EU-RAW" secondAttribute="leading" id="AeO-nZ-SPB"/>
+                            <constraint firstItem="U0Z-EU-RAW" firstAttribute="trailing" secondItem="Yoy-VY-47W" secondAttribute="trailing" id="eYu-jf-2wK"/>
+                            <constraint firstItem="Yoy-VY-47W" firstAttribute="top" secondItem="U0Z-EU-RAW" secondAttribute="top" id="yoc-l0-E5h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="U0Z-EU-RAW"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5st-S8-eIw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ywA-nD-VfO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1138" y="222"/>
+        </scene>
+        <!--Line ChartVC-->
+        <scene sceneID="fg4-0v-CWe">
+            <objects>
+                <viewController storyboardIdentifier="LineChartVC" id="Poe-pa-ox4" customClass="LineChartVC" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Klf-MV-aKf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zaa-Hp-Fv0" customClass="LineChartContainerView" customModule="Charts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="400"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="frn-Tt-V1t"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zaa-Hp-Fv0" firstAttribute="top" secondItem="DN2-CT-Zsf" secondAttribute="top" id="dN0-0b-5sW"/>
+                            <constraint firstItem="zaa-Hp-Fv0" firstAttribute="leading" secondItem="DN2-CT-Zsf" secondAttribute="leading" id="icv-Sx-NA9"/>
+                            <constraint firstItem="DN2-CT-Zsf" firstAttribute="trailing" secondItem="zaa-Hp-Fv0" secondAttribute="trailing" id="sTk-SQ-q8e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DN2-CT-Zsf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MH2-9N-9cJ"/>
+                    <connections>
+                        <outlet property="chartContainer" destination="zaa-Hp-Fv0" id="NQt-zY-HdO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XNm-Ti-vaW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2102.898550724638" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>
