@@ -19,7 +19,10 @@ class LineChartVC: UIViewController {
             guard let date = Calendar.current.date(byAdding: .day, value: index, to: Date()) else {
                 return nil
             }
-            return PlotPointData(value: CGFloat.random(in: 0...20), date: date)
+            let value = CGFloat.random(in: 0...20)
+            print(value)
+            return PlotPointData(value: value, date: date)
+//            return PlotPointData(value: 0, date: date)
         }
         let plotData = PlotData(enterPoints: points)
         chartContainer.setupData(plotData)

@@ -83,7 +83,7 @@ class LineChartContainerView: UIView {
             .forEach { (label) in
                 label.removeFromSuperview()
         }
-        guard yAxisLineValues.count > 1 else {
+        guard yAxisLineValues.count > 0 else {
             return
         }
         yAxisLineValues.enumerated().forEach { (index, text) in

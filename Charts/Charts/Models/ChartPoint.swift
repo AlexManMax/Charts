@@ -28,7 +28,7 @@ struct PlotData {
         return enterPoints.map {
             ChartPoint(
                 date: $0.date,
-                yValue: $0.value / maxValue
+                yValue: ($0.value / maxValue).isNaN ? 0 : $0.value / maxValue
             )}
     }
     

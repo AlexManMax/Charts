@@ -9,8 +9,8 @@
 import UIKit
 
 class GradientLineChartView: UIView {
-    static let pointSpacing: CGFloat = 80
-    static let insets = UIEdgeInsets(top: 0, left: 20, bottom: 10, right: 0)
+    static let pointSpacing: CGFloat = 40
+    static let insets = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 0)
     
     static func calculateWidth(pointsCount: Int) -> CGFloat {
         insets.left + insets.right + GradientLineChartView.pointSpacing * CGFloat(pointsCount)
@@ -24,7 +24,12 @@ class GradientLineChartView: UIView {
     
     private var graphPoints: [CGFloat] {
         let height = bounds.height - GradientLineChartView.insets.top - GradientLineChartView.insets.bottom
-        return plotData.сhartPoints.map{bounds.height - ($0.yValue * height) + GradientLineChartView.insets.top }
+        guard height > 0 else {
+            return []
+        }
+        return plotData.сhartPoints.map { (chartPoint) -> CGFloat in
+            bounds.height - (chartPoint.yValue * height) + GradientLineChartView.insets.top - GradientLineChartView.insets.bottom
+        }
     }
     
     private var points: [CGPoint] {
@@ -34,9 +39,9 @@ class GradientLineChartView: UIView {
         let averageValue = CGFloat(graphPoints.reduce(CGFloat(0), { $0 + $1 }) / CGFloat(graphPoints.count))
         let maxValue = averageValue * 2
         let scaleY = bounds.height / maxValue
-        let yPoints = graphPoints.map { $0 * scaleY }
+        let yPoints = graphPoints.map { scaleY.isNaN ? 0 :  $0 * scaleY }
         
-        return yPoints.enumerated()
+        return graphPoints.enumerated()
             .map { (index, y) -> CGPoint in
                 let x = CGFloat(index) * GradientLineChartView.pointSpacing + GradientLineChartView.insets.left
                 return CGPoint(x: x, y: y)
@@ -69,18 +74,35 @@ class GradientLineChartView: UIView {
         layer.addSublayer(chartLayr)
         chartLayr.frame = bounds
         updateChartLayer()
+        
+        updateDayTexts()
     }
 
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
         updateGradientLayer()
         updateChartLayer()
+        updateDayTexts()
     }
 
     func setupData(plotData: PlotData) {
         self.plotData = plotData
         updateGradientLayer()
         updateChartLayer()
+        updateDayTexts()
+    }
+    
+    fileprivate func updateDayTexts() {
+        removeAllDayText()
+        points.enumerated().forEach { (index, point) in
+            let day = plotData.enterPoints[index].date.day
+            let centerY = bounds.height - GradientLineChartView.insets.bottom / 2
+            let textLayer = makeTextLayer("\(day)")
+            let size = textLayer.preferredFrameSize()
+            let y = centerY - size.height / 2
+            textLayer.frame = CGRect(x: point.x - size.width / 2, y: y, width: size.width, height: size.height)
+            chartLayr.addSublayer(textLayer)
+        }
     }
     
     fileprivate func updateChartLayer() {
@@ -147,11 +169,27 @@ class GradientLineChartView: UIView {
         return circleLayer
     }
     
-    fileprivate func maketextLayer() -> CATextLayer {
+    fileprivate func makeTextLayer(_ text: String) -> CATextLayer {
         let layer = CATextLayer()
         
-        layer.font = CTFontDescriptorCreateWithNameAndSize(UIFont.systemFont(ofSize: 1).fontName as CFString, 10)
+//        layer.font = CTFontDescriptorCreateWithNameAndSize(UIFont.systemFont(ofSize: 1).fontName as CFString, 10)
+//        layer.a
+        let myAttributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10) , // font
+            NSAttributedString.Key.foregroundColor: UIColor.white                    // text color
+        ]
+        let myAttributedString = NSAttributedString(string: text, attributes: myAttributes )
+        layer.foregroundColor = UIColor.white.cgColor
+        layer.string = myAttributedString
+        layer.name = "dayText"
+        
         return layer
+    }
+    
+    fileprivate func removeAllDayText() {
+        chartLayr.sublayers?
+            .filter{ $0.name == "dayText"}
+            .forEach{ $0.removeFromSuperlayer()}
     }
     
     func removeAllCircleLayer() {
