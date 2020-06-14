@@ -20,30 +20,31 @@ struct PlotPointData {
 
 struct PlotData {
     var enterPoints: [PlotPointData]
+    var defaultYAxisMax: CGFloat
+    
+    var topValue: CGFloat {
+        guard let maxValue = enterPoints.map({ $0.value }).max() else {
+            return defaultYAxisMax
+        }
+        return max(maxValue, defaultYAxisMax)
+    }
     
     var сhartPoints: [ChartPoint] {
-        guard let maxValue = enterPoints.map({ $0.value }).max() else {
-            return []
-        }
         return enterPoints.map {
             ChartPoint(
                 date: $0.date,
-                yValue: ($0.value / maxValue).isNaN ? 0 : $0.value / maxValue
+                yValue: ($0.value / topValue).isNaN ? 0 : $0.value / topValue
             )}
     }
     
     var yAxisLineValues: [String] {
         var result = ["0"]
-        
-        guard let maxValue = enterPoints.map({ $0.value }).max() else {
-            return []
-        }
-        let step = maxValue / 5
+        let step = topValue / 5
         var value: CGFloat = 0
         
-        while value < maxValue {
+        while value < topValue {
             value += step
-            result.append("\(Int(value))")
+            result.append(String(format: "%0.1f", arguments: [value]))
         }
         return result
     }

@@ -10,17 +10,21 @@ import UIKit
 
 class GradientLineChartView: UIView {
     static let pointSpacing: CGFloat = 40
-    static let insets = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 0)
+    static let insets = UIEdgeInsets(top: 25, left: 20, bottom: 20, right: 0)
     
     static func calculateWidth(pointsCount: Int) -> CGFloat {
         insets.left + insets.right + GradientLineChartView.pointSpacing * CGFloat(pointsCount)
     }
     
+    private let valueContainerSize = CGSize(width: 30, height: 20)
+    
     @IBInspectable var startColor: UIColor = .red
     @IBInspectable var endColor: UIColor = .clear
     @IBInspectable var pointColor: UIColor = .green
+    @IBInspectable var valueTextColor: UIColor = .white
+    @IBInspectable var valueContainerColor: UIColor = .green
     
-    var plotData = PlotData(enterPoints: [])
+    var plotData = PlotData(enterPoints: [], defaultYAxisMax: 1)
     
     private var graphPoints: [CGFloat] {
         let height = bounds.height - GradientLineChartView.insets.top - GradientLineChartView.insets.bottom
@@ -28,7 +32,7 @@ class GradientLineChartView: UIView {
             return []
         }
         return plotData.сhartPoints.map { (chartPoint) -> CGFloat in
-            bounds.height - (chartPoint.yValue * height) + GradientLineChartView.insets.top - GradientLineChartView.insets.bottom
+            bounds.height - (chartPoint.yValue * height) - GradientLineChartView.insets.bottom
         }
     }
     
@@ -52,6 +56,8 @@ class GradientLineChartView: UIView {
         CubicCurveAlgorithm().controlPointsFromPoints(dataPoints: points)
     }
     
+    private weak var valueLabel: UILabel?
+    
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
         layer.colors = [startColor.cgColor, endColor.cgColor]
@@ -63,6 +69,8 @@ class GradientLineChartView: UIView {
         let layer = CAShapeLayer()
         return layer
     }()
+    
+    
 
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
@@ -83,6 +91,41 @@ class GradientLineChartView: UIView {
         updateGradientLayer()
         updateChartLayer()
         updateDayTexts()
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        guard let location = touches.first?.location(in: self) else { return }
+        let locationFrame = CGRect(x: location.x - 20, y: location.y - 20, width: 40, height: 40)
+        
+        guard let index = points.firstIndex(where: { locationFrame.contains($0) }) else { return }
+        drawValueLayer(index: index)
+    }
+    
+    fileprivate func drawValueLayer(index: Int) {
+        let valueLabel: UILabel
+        
+        if self.valueLabel == nil {
+            let label = UILabel()
+            label.backgroundColor = valueContainerColor
+            label.textColor = .white
+            label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+            label.textAlignment = .center
+            label.layer.cornerRadius = 4
+            label.clipsToBounds = true
+            self.addSubview(label)
+            self.valueLabel = label
+            valueLabel = label
+        } else {
+            valueLabel = self.valueLabel!
+        }
+        let point = points[index]
+        valueLabel.text = String(format: "%.1f", plotData.enterPoints[index].value)
+        valueLabel.frame = CGRect(x: point.x - valueContainerSize.width / 2,
+                                      y: point.y - 10 - valueContainerSize.height,
+                                      width: valueContainerSize.width,
+                                      height: valueContainerSize.height)
     }
 
     func setupData(plotData: PlotData) {
@@ -169,17 +212,17 @@ class GradientLineChartView: UIView {
         return circleLayer
     }
     
-    fileprivate func makeTextLayer(_ text: String) -> CATextLayer {
+    fileprivate func makeTextLayer(_ text: String,
+                                   font: UIFont = UIFont.systemFont(ofSize: 10),
+                                   foregroundColor: UIColor = .white) -> CATextLayer {
         let layer = CATextLayer()
-        
-//        layer.font = CTFontDescriptorCreateWithNameAndSize(UIFont.systemFont(ofSize: 1).fontName as CFString, 10)
-//        layer.a
+
         let myAttributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10) , // font
-            NSAttributedString.Key.foregroundColor: UIColor.white                    // text color
+            NSAttributedString.Key.font: font , // font
+            NSAttributedString.Key.foregroundColor: foregroundColor                    // text color
         ]
         let myAttributedString = NSAttributedString(string: text, attributes: myAttributes )
-        layer.foregroundColor = UIColor.white.cgColor
+        layer.foregroundColor = foregroundColor.cgColor
         layer.string = myAttributedString
         layer.name = "dayText"
         

@@ -9,18 +9,18 @@
 import UIKit
 
 class LineChartContainerView: UIView {
-    private let plotInsets = UIEdgeInsets(top: 20, left: 30, bottom: 0, right: 0)
+    private let monthContainerHeight: CGFloat = 20
+    private let plotInsets = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 0)
     private let xValuesHeight: CGFloat = 20
-    private let labelLeftOffset: CGFloat = 10
+    private let labelLeftOffset: CGFloat = 5
     
     private let horizontalLineColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
     private let labelColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     
     private var yAxisLineValues: [String] = []
-    private var plotData = PlotData(enterPoints: [])
+    private var plotData = PlotData(enterPoints: [], defaultYAxisMax: 1)
     
     private weak var lcChartViewWidth: NSLayoutConstraint?
-//    private weak var lcChartViewHeight: NSLayoutConstraint?
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -49,12 +49,19 @@ class LineChartContainerView: UIView {
         
         guard superview != nil else { return }
         updateUI()
+        scrollView.addObserver(self, forKeyPath: "contentOffset", options: .old, context: nil)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         updateYValuesLabels()
         updateHorizontalLinesLayer()
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let observedObject = object as? UIScrollView, observedObject == scrollView {
+            updateMonthLabels()
+        }
     }
     
     func setupData(_ plotData: PlotData) {
@@ -87,7 +94,7 @@ class LineChartContainerView: UIView {
             return
         }
         yAxisLineValues.enumerated().forEach { (index, text) in
-            let stepSize = (bounds.height - xValuesHeight - plotInsets.top) /  CGFloat(yAxisLineValues.count - 1)
+            let stepSize = (bounds.height - xValuesHeight - monthContainerHeight - GradientLineChartView.insets.top) /  CGFloat(yAxisLineValues.count - 1)
             let label = makeLabel(text)
             let y = bounds.height - xValuesHeight - label.bounds.height / 2 - stepSize * CGFloat(index)
             let x = plotInsets.left - label.bounds.width - labelLeftOffset
@@ -224,10 +231,10 @@ class LineChartContainerView: UIView {
         let contentSize = scrollView.contentSize
         
         guard contentSize.width > 0 else { return nil }
-        let leftBorder = contentOffset.x
+        let leftBorder = contentOffset.x - plotInsets.left
         let rightBorder = leftBorder + scrollView.bounds.width
-        let leftCellIndex = max(Int(leftBorder / CollumnDayCVCell.cellWidth), 0)
-        let rightCellIndex = min(Int(rightBorder / CollumnDayCVCell.cellWidth), plotData.enterPoints.count - 1)
+        let leftCellIndex = max(Int(leftBorder / GradientLineChartView.pointSpacing), 0)
+        let rightCellIndex = min(Int(rightBorder / GradientLineChartView.pointSpacing), plotData.enterPoints.count - 1)
         
         var firstDayIndex: Int?
         
@@ -261,7 +268,7 @@ class LineChartContainerView: UIView {
             monthContainerView.topAnchor.constraint(equalTo: topAnchor),
             monthContainerView.leftAnchor.constraint(equalTo: leftAnchor, constant: plotInsets.left),
             monthContainerView.rightAnchor.constraint(equalTo: rightAnchor, constant: plotInsets.right),
-            monthContainerView.heightAnchor.constraint(equalToConstant: plotInsets.top)
+            monthContainerView.heightAnchor.constraint(equalToConstant: monthContainerHeight)
         ])
     }
 }

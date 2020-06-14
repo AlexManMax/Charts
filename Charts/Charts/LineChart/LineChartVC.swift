@@ -20,11 +20,10 @@ class LineChartVC: UIViewController {
                 return nil
             }
             let value = CGFloat.random(in: 0...20)
-            print(value)
             return PlotPointData(value: value, date: date)
 //            return PlotPointData(value: 0, date: date)
         }
-        let plotData = PlotData(enterPoints: points)
+        let plotData = PlotData(enterPoints: points, defaultYAxisMax: 10)
         chartContainer.setupData(plotData)
     }
     

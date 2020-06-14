@@ -77,7 +77,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvJ-t9-Aih">
                                         <rect key="frame" x="0.0" y="387" width="414" height="387"/>
-                                        <state key="normal" title="LineCartVC"/>
+                                        <state key="normal" title="CollumnCartVC"/>
                                         <connections>
                                             <segue destination="vs4-8Q-CUo" kind="show" id="wzH-qo-vMp"/>
                                         </connections>

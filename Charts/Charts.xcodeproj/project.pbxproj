@@ -15,6 +15,8 @@
 		E050EFFC248FED1700B54B68 /* CubicCurveAlghoritm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E050EFFB248FED1700B54B68 /* CubicCurveAlghoritm.swift */; };
 		E050EFFE248FF61100B54B68 /* GradientLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E050EFFD248FF61100B54B68 /* GradientLineChartView.swift */; };
 		E050F001248FF79600B54B68 /* LineChartContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E050F000248FF79600B54B68 /* LineChartContainerView.swift */; };
+		E06DFCB324963B6900CB5F5D /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06DFCB224963B6900CB5F5D /* CGPoint+Extension.swift */; };
+		E09E742B2492B06700D75D00 /* PointValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09E742A2492B06700D75D00 /* PointValueView.swift */; };
 		E0BD2E0324882E3700B34B2A /* CollumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BD2E0224882E3700B34B2A /* CollumnView.swift */; };
 		E0BD2E072488327900B34B2A /* CollumnDayCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BD2E062488327900B34B2A /* CollumnDayCVCell.swift */; };
 		E0BD2E09248838F800B34B2A /* ColumnChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BD2E08248838F800B34B2A /* ColumnChartView.swift */; };
@@ -37,6 +39,8 @@
 		E050EFFB248FED1700B54B68 /* CubicCurveAlghoritm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicCurveAlghoritm.swift; sourceTree = "<group>"; };
 		E050EFFD248FF61100B54B68 /* GradientLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLineChartView.swift; sourceTree = "<group>"; };
 		E050F000248FF79600B54B68 /* LineChartContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartContainerView.swift; sourceTree = "<group>"; };
+		E06DFCB224963B6900CB5F5D /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
+		E09E742A2492B06700D75D00 /* PointValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointValueView.swift; sourceTree = "<group>"; };
 		E0BD2E0224882E3700B34B2A /* CollumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollumnView.swift; sourceTree = "<group>"; };
 		E0BD2E062488327900B34B2A /* CollumnDayCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollumnDayCVCell.swift; sourceTree = "<group>"; };
 		E0BD2E08248838F800B34B2A /* ColumnChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnChartView.swift; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 			children = (
 				E04FA682248AC2B800678D21 /* UICollectionView+Extension.swift */,
 				E04FA687248BCE8500678D21 /* Date+Extension.swift */,
+				E06DFCB224963B6900CB5F5D /* CGPoint+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 				E0F0D3792486CB18009D54BC /* LaunchScreen.storyboard */,
 				E0F0D37C2486CB18009D54BC /* Info.plist */,
 				E0C007DC248EBCB200B66A0A /* StartVC.swift */,
+				E09E742A2492B06700D75D00 /* PointValueView.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -219,12 +225,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E04FA683248AC2B800678D21 /* UICollectionView+Extension.swift in Sources */,
+				E09E742B2492B06700D75D00 /* PointValueView.swift in Sources */,
 				E0BD2E0324882E3700B34B2A /* CollumnView.swift in Sources */,
 				E0F0D3732486CB16009D54BC /* ViewController.swift in Sources */,
 				E0F0D36F2486CB16009D54BC /* AppDelegate.swift in Sources */,
 				E0C007DB248EBC7400B66A0A /* LineChartVC.swift in Sources */,
 				E04FA67B248ABB0800678D21 /* CollumnChartFlowLayout.swift in Sources */,
 				E04FA688248BCE8500678D21 /* Date+Extension.swift in Sources */,
+				E06DFCB324963B6900CB5F5D /* CGPoint+Extension.swift in Sources */,
 				E0BD2E072488327900B34B2A /* CollumnDayCVCell.swift in Sources */,
 				E0F0D3712486CB16009D54BC /* SceneDelegate.swift in Sources */,
 				E050EFFC248FED1700B54B68 /* CubicCurveAlghoritm.swift in Sources */,

@@ -9,15 +9,16 @@
 import UIKit
 
 class ColumnChartView: UIView {
-    private let plotInsets = UIEdgeInsets(top: 20, left: 30, bottom: 0, right: 0)
+    private let monthContainerHeight: CGFloat = 20
+    private let plotInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
     private let xValuesHeight: CGFloat = 20
-    private let labelLeftOffset: CGFloat = 10
+    private let labelLeftOffset: CGFloat = 5
     
     private let horizontalLineColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
     private let labelColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     
     private var yAxisLineValues: [String] = []
-    private var plotData = PlotData(enterPoints: [])
+    private var plotData = PlotData(enterPoints: [], defaultYAxisMax: 1)
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
@@ -91,7 +92,7 @@ class ColumnChartView: UIView {
             return
         }
         yAxisLineValues.enumerated().forEach { (index, text) in
-            let stepSize = (bounds.height - xValuesHeight - plotInsets.top) /  CGFloat(yAxisLineValues.count - 1)
+            let stepSize = (bounds.height - xValuesHeight - monthContainerHeight - CollumnDayCVCell.topInset) /  CGFloat(yAxisLineValues.count - 1)
             let label = makeLabel(text)
             let y = bounds.height - xValuesHeight - label.bounds.height / 2 - stepSize * CGFloat(index)
             let x = plotInsets.left - label.bounds.width - labelLeftOffset
@@ -252,7 +253,7 @@ class ColumnChartView: UIView {
             monthContainerView.topAnchor.constraint(equalTo: topAnchor),
             monthContainerView.leftAnchor.constraint(equalTo: leftAnchor, constant: plotInsets.left),
             monthContainerView.rightAnchor.constraint(equalTo: rightAnchor, constant: plotInsets.right),
-            monthContainerView.heightAnchor.constraint(equalToConstant: plotInsets.top)
+            monthContainerView.heightAnchor.constraint(equalToConstant: monthContainerHeight)
         ])
     }
 }
@@ -265,8 +266,9 @@ extension ColumnChartView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeResusable(cellType: CollumnDayCVCell.self, for: indexPath)
         let chartPoint = plotData.сhartPoints[indexPath.row]
-        cell.setup(pointValue: chartPoint)
+        let plotPoint = plotData.enterPoints[indexPath.row]
         cell.setBottomViewHeight(xValuesHeight)
+        cell.setup(chartPoint: chartPoint, plotPoint: plotPoint)
         cell.bottomLabel.textColor = labelColor
         return cell
     }
