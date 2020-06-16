@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z3Z-XK-PjH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U6t-oB-mtk">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,15 +7,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Column ChartVC-->
         <scene sceneID="obL-vN-ldY">
             <objects>
-                <viewController id="vs4-8Q-CUo" customClass="ViewController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vs4-8Q-CUo" customClass="ColumnChartVC" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ai1-HV-fnm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3E-iX-3PL" customClass="ColumnChartView" customModule="Charts" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3E-iX-3PL" customClass="CollumnChartView" customModule="Charts" customModuleProvider="target">
                                 <rect key="frame" x="10" y="251" width="394" height="394"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.27646083047945208" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -57,6 +57,36 @@
             </objects>
             <point key="canvasLocation" x="319" y="222"/>
         </scene>
+        <!--Report DataVC-->
+        <scene sceneID="kui-K2-4ZK">
+            <objects>
+                <viewController id="U6t-oB-mtk" customClass="ReportDataVC" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dOL-9a-KCr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="onO-qp-fmq">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="H4U-Cf-Sc0" firstAttribute="trailing" secondItem="onO-qp-fmq" secondAttribute="trailing" id="Pg3-jd-f7s"/>
+                            <constraint firstItem="onO-qp-fmq" firstAttribute="leading" secondItem="H4U-Cf-Sc0" secondAttribute="leading" id="c4F-ha-ay4"/>
+                            <constraint firstItem="onO-qp-fmq" firstAttribute="top" secondItem="H4U-Cf-Sc0" secondAttribute="top" id="hbr-3o-cVV"/>
+                            <constraint firstItem="H4U-Cf-Sc0" firstAttribute="bottom" secondItem="onO-qp-fmq" secondAttribute="bottom" id="laE-8k-k8a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="H4U-Cf-Sc0"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="onO-qp-fmq" id="Vnq-Mw-rCa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Te-6q-OK4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="321" y="1001"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="Gbz-Uc-6aU">
             <objects>
@@ -65,18 +95,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Yoy-VY-47W">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Yoy-VY-47W">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvI-Xa-U9w">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="387"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="377"/>
                                         <state key="normal" title="LineCartVC"/>
                                         <connections>
                                             <segue destination="Poe-pa-ox4" kind="show" id="JTg-dD-2Sn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvJ-t9-Aih">
-                                        <rect key="frame" x="0.0" y="387" width="414" height="387"/>
+                                        <rect key="frame" x="0.0" y="397" width="414" height="377"/>
                                         <state key="normal" title="CollumnCartVC"/>
                                         <connections>
                                             <segue destination="vs4-8Q-CUo" kind="show" id="wzH-qo-vMp"/>

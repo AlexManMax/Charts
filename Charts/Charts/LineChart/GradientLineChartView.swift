@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GradientLineChartView: UIView {
+class GradientLineChartView: UIView, IChart {
     static let pointSpacing: CGFloat = 40
     static let insets = UIEdgeInsets(top: 25, left: 20, bottom: 20, right: 0)
     
@@ -18,11 +18,13 @@ class GradientLineChartView: UIView {
     
     private let valueContainerSize = CGSize(width: 30, height: 20)
     
-    @IBInspectable var startColor: UIColor = .red
+    @IBInspectable var lineColor: UIColor = #colorLiteral(red: 0.07329701632, green: 0.7598437667, blue: 0.4869676232, alpha: 1)
+    @IBInspectable var startColor: UIColor = #colorLiteral(red: 0.07329701632, green: 0.7598437667, blue: 0.4869676232, alpha: 1).withAlphaComponent(0.8)
     @IBInspectable var endColor: UIColor = .clear
-    @IBInspectable var pointColor: UIColor = .green
+    @IBInspectable var pointColor: UIColor = .white
     @IBInspectable var valueTextColor: UIColor = .white
     @IBInspectable var valueContainerColor: UIColor = .green
+    @IBInspectable var circleRadius: CGFloat = 4
     
     var plotData = PlotData(enterPoints: [], defaultYAxisMax: 1)
     
@@ -40,11 +42,6 @@ class GradientLineChartView: UIView {
         guard !graphPoints.isEmpty else {
             return []
         }
-        let averageValue = CGFloat(graphPoints.reduce(CGFloat(0), { $0 + $1 }) / CGFloat(graphPoints.count))
-        let maxValue = averageValue * 2
-        let scaleY = bounds.height / maxValue
-        let yPoints = graphPoints.map { scaleY.isNaN ? 0 :  $0 * scaleY }
-        
         return graphPoints.enumerated()
             .map { (index, y) -> CGPoint in
                 let x = CGFloat(index) * GradientLineChartView.pointSpacing + GradientLineChartView.insets.left
@@ -70,8 +67,6 @@ class GradientLineChartView: UIView {
         return layer
     }()
     
-    
-
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
 
@@ -143,7 +138,10 @@ class GradientLineChartView: UIView {
             let textLayer = makeTextLayer("\(day)")
             let size = textLayer.preferredFrameSize()
             let y = centerY - size.height / 2
-            textLayer.frame = CGRect(x: point.x - size.width / 2, y: y, width: size.width, height: size.height)
+            textLayer.frame = CGRect(x: point.x - size.width / 2,
+                                     y: y,
+                                     width: size.width,
+                                     height: size.height)
             chartLayr.addSublayer(textLayer)
         }
     }
@@ -164,7 +162,7 @@ class GradientLineChartView: UIView {
                           controlPoint1: controlPoints[index].controlPoint1,
                           controlPoint2: controlPoints[index].controlPoint2)
         }
-        chartLayr.strokeColor = UIColor.black.cgColor
+        chartLayr.strokeColor = lineColor.cgColor
         chartLayr.path = path.cgPath
         chartLayr.lineWidth = 2
         chartLayr.fillColor = UIColor.clear.cgColor
@@ -204,9 +202,14 @@ class GradientLineChartView: UIView {
     
     fileprivate func makeCircleLayer(point: CGPoint) -> CAShapeLayer {
         let circleLayer = CAShapeLayer()
-        circleLayer.bounds = CGRect(x: 0, y: 0, width: 12, height: 12)
+        circleLayer.bounds = CGRect(x: 0,
+                                    y: 0,
+                                    width: circleRadius * 2,
+                                    height: circleRadius * 2)
         circleLayer.path = UIBezierPath(ovalIn: circleLayer.bounds).cgPath
-        circleLayer.fillColor = pointColor.cgColor
+        circleLayer.fillColor = UIColor.white.cgColor
+        circleLayer.strokeColor = lineColor.cgColor
+        circleLayer.lineWidth = 2
         circleLayer.position = point
         circleLayer.name = "circleLayer"
         return circleLayer

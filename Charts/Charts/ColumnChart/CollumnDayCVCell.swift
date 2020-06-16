@@ -20,6 +20,9 @@ class CollumnDayCVCell: UICollectionViewCell {
     
     @IBOutlet weak var lcBottomViewHeight: NSLayoutConstraint!
     
+    var chartPointValue: ChartPoint = ChartPoint(date: Date(), yValue: 0.5)
+    var plotPoint: PlotPointData = PlotPointData(value: 0, date: Date())
+    
     lazy var valueView: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.2689377666, green: 1, blue: 0.3203957379, alpha: 1)
@@ -41,12 +44,12 @@ class CollumnDayCVCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
+            guard plotPoint.value > 0 else {
+                return
+            }
             valueView.isHidden = !isSelected
         }
     }
-    
-    var chartPointValue: ChartPoint = ChartPoint(date: Date(), yValue: 0.5)
-    var plotPoint: PlotPointData = PlotPointData(value: 0, date: Date())
     
     private var collumnViewFrame: CGRect {
         let width = bounds.width / 3

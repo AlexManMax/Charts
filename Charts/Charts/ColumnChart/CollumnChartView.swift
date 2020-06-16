@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColumnChartView: UIView {
+class CollumnChartView: UIView, IChart {
     private let monthContainerHeight: CGFloat = 20
     private let plotInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
     private let xValuesHeight: CGFloat = 20
@@ -53,7 +53,7 @@ class ColumnChartView: UIView {
         updateHorizontalLinesLayer()
     }
     
-    func setupData(_ plotData: PlotData) {
+    func setupData(plotData: PlotData) {
         self.plotData = plotData
         self.yAxisLineValues = plotData.yAxisLineValues
         updateYValuesLabels()
@@ -258,7 +258,7 @@ class ColumnChartView: UIView {
     }
 }
 
-extension ColumnChartView: UICollectionViewDataSource {
+extension CollumnChartView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return plotData.сhartPoints.count
     }
@@ -274,7 +274,7 @@ extension ColumnChartView: UICollectionViewDataSource {
     }
 }
 
-extension ColumnChartView: UICollectionViewDelegate {
+extension CollumnChartView: UICollectionViewDelegate {
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        updateMonthLabels()
 //    }

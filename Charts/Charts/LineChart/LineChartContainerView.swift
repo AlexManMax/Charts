@@ -8,14 +8,17 @@
 
 import UIKit
 
-class LineChartContainerView: UIView {
-    private let monthContainerHeight: CGFloat = 20
+class LineChartContainerView: UIView, IChart {
+    private let monthContainerHeight: CGFloat = 15
     private let plotInsets = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 0)
     private let xValuesHeight: CGFloat = 20
     private let labelLeftOffset: CGFloat = 5
     
-    private let horizontalLineColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
-    private let labelColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    @IBInspectable var horizontalLineColor = UIColor.white.withAlphaComponent(0.8)
+    @IBInspectable var labelColor = UIColor.white.withAlphaComponent(0.8)
+    
+    @IBInspectable var yAxisLabelFont: UIFont = .systemFont(ofSize: 12, weight: .regular)
+    @IBInspectable var monthFont: UIFont = .systemFont(ofSize: 10, weight: .bold)
     
     private var yAxisLineValues: [String] = []
     private var plotData = PlotData(enterPoints: [], defaultYAxisMax: 1)
@@ -64,7 +67,7 @@ class LineChartContainerView: UIView {
         }
     }
     
-    func setupData(_ plotData: PlotData) {
+    func setupData(plotData: PlotData) {
         self.plotData = plotData
         self.yAxisLineValues = plotData.yAxisLineValues
         updateYValuesLabels()
@@ -94,8 +97,8 @@ class LineChartContainerView: UIView {
             return
         }
         yAxisLineValues.enumerated().forEach { (index, text) in
-            let stepSize = (bounds.height - xValuesHeight - monthContainerHeight - GradientLineChartView.insets.top) /  CGFloat(yAxisLineValues.count - 1)
-            let label = makeLabel(text)
+            let stepSize = (bounds.height - xValuesHeight - monthContainerHeight) /  CGFloat(yAxisLineValues.count - 1)
+            let label = makeLabel(text, font: yAxisLabelFont)
             let y = bounds.height - xValuesHeight - label.bounds.height / 2 - stepSize * CGFloat(index)
             let x = plotInsets.left - label.bounds.width - labelLeftOffset
             label.frame.origin = CGPoint(x: x, y: y)
@@ -112,7 +115,7 @@ class LineChartContainerView: UIView {
         
         NSLayoutConstraint.activate([
             scrollView.leftAnchor.constraint(equalTo: leftAnchor, constant: plotInsets.left),
-            scrollView.topAnchor.constraint(equalTo: monthContainerView.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: plotInsets.bottom),
             scrollView.rightAnchor.constraint(equalTo: rightAnchor, constant: plotInsets.right)
         ])
@@ -131,9 +134,9 @@ class LineChartContainerView: UIView {
         self.lcChartViewWidth = widthConstraint
     }
     
-    fileprivate func makeLabel(_ text: String) -> UILabel {
+    fileprivate func makeLabel(_ text: String, font: UIFont = .systemFont(ofSize: 12)) -> UILabel {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12)
+        label.font = font
         label.text = text
         label.textColor = labelColor
         label.sizeToFit()
@@ -174,9 +177,8 @@ class LineChartContainerView: UIView {
             let month = firstDayCellData.date.month
             
             if monthContainerView.subviews.compactMap({$0 as? UILabel}).first(where: { $0.text == monthName}) == nil {
-                label = UILabel()
+                label = makeLabel(monthName, font: monthFont)
                 label.textColor = .white
-                label.text = monthName
                 monthContainerView.addSubview(label)
             }
             label = monthContainerView.subviews.compactMap({$0 as? UILabel}).first(where: { $0.text == monthName})!
@@ -204,7 +206,7 @@ class LineChartContainerView: UIView {
             let month = leftCellData.date.month
             
             if monthContainerView.subviews.compactMap({$0 as? UILabel}).first(where: { $0.text == monthName}) == nil {
-                let label = UILabel()
+                let label = makeLabel(monthName, font: monthFont)
                 label.textColor = .white
                 label.text = monthName
                 label.textColor = .white
