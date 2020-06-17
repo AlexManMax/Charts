@@ -26,6 +26,11 @@ extension Date {
         return calendar.component(.month, from: self)
     }
     
+    var year: Int {
+        let calendar = Calendar.current
+        return calendar.component(.year, from: self)
+    }
+    
     var prevMonth: Int {
         Calendar.current.date(byAdding: .month, value: -1, to: self)!.month
     }

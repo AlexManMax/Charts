@@ -37,6 +37,9 @@
                                 <state key="normal" title="Сегодняшний вес">
                                     <color key="titleColor" white="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="enterWeightTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="r5x-Nb-aAM"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5Qx-Pz-krm">
                                 <rect key="frame" x="10" y="47" width="311" height="60"/>
@@ -51,7 +54,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текущий" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3D-Lx-4Gy">
-                                                <rect key="frame" x="0.0" y="11" width="103.5" height="14.5"/>
+                                                <rect key="frame" x="0.0" y="15" width="103.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -71,7 +74,7 @@
                                             <constraint firstAttribute="bottom" secondItem="85q-ue-UJ0" secondAttribute="bottom" id="EoB-OB-QgP"/>
                                             <constraint firstItem="85q-ue-UJ0" firstAttribute="top" secondItem="6FN-Ls-mMb" secondAttribute="top" constant="10" id="JCC-Wi-9RX"/>
                                             <constraint firstAttribute="trailing" secondItem="Nqf-Yv-hL2" secondAttribute="trailing" id="NmO-DR-UaW"/>
-                                            <constraint firstItem="Nqf-Yv-hL2" firstAttribute="top" secondItem="w3D-Lx-4Gy" secondAttribute="bottom" constant="14" id="Og6-In-6lD"/>
+                                            <constraint firstItem="Nqf-Yv-hL2" firstAttribute="top" secondItem="w3D-Lx-4Gy" secondAttribute="bottom" constant="10" id="Og6-In-6lD"/>
                                             <constraint firstItem="Nqf-Yv-hL2" firstAttribute="centerX" secondItem="6FN-Ls-mMb" secondAttribute="centerX" id="TTr-CZ-ZZx"/>
                                             <constraint firstAttribute="trailing" secondItem="w3D-Lx-4Gy" secondAttribute="trailing" id="jek-zf-CjW"/>
                                             <constraint firstItem="w3D-Lx-4Gy" firstAttribute="centerX" secondItem="6FN-Ls-mMb" secondAttribute="centerX" id="ndB-q6-4fp"/>
@@ -89,7 +92,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Последние тридцать дней" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13f-Hy-94l">
-                                                <rect key="frame" x="0.0" y="-3.5" width="104" height="29"/>
+                                                <rect key="frame" x="0.0" y="0.5" width="104" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -108,7 +111,7 @@
                                             <constraint firstItem="mA3-zk-I53" firstAttribute="leading" secondItem="lwv-2p-kpb" secondAttribute="leading" id="A2W-uV-pg6"/>
                                             <constraint firstItem="13f-Hy-94l" firstAttribute="leading" secondItem="lwv-2p-kpb" secondAttribute="leading" id="C7V-2k-1eZ"/>
                                             <constraint firstItem="13f-Hy-94l" firstAttribute="centerX" secondItem="lwv-2p-kpb" secondAttribute="centerX" id="JbB-mI-VUq"/>
-                                            <constraint firstItem="mA3-zk-I53" firstAttribute="top" secondItem="13f-Hy-94l" secondAttribute="bottom" constant="14" id="KcZ-NW-icA"/>
+                                            <constraint firstItem="mA3-zk-I53" firstAttribute="top" secondItem="13f-Hy-94l" secondAttribute="bottom" constant="10" id="KcZ-NW-icA"/>
                                             <constraint firstItem="Zqq-pb-0xG" firstAttribute="top" secondItem="lwv-2p-kpb" secondAttribute="top" constant="10" id="O8L-1M-0am"/>
                                             <constraint firstAttribute="bottom" secondItem="Zqq-pb-0xG" secondAttribute="bottom" id="R4K-Yc-WsK"/>
                                             <constraint firstAttribute="trailing" secondItem="Zqq-pb-0xG" secondAttribute="trailing" id="gr7-80-Nfm"/>
@@ -127,7 +130,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Среднегодовое значение" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhv-vo-PDL">
-                                                <rect key="frame" x="0.0" y="-3.5" width="103.5" height="29"/>
+                                                <rect key="frame" x="0.0" y="0.5" width="103.5" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -142,7 +145,7 @@
                                             <constraint firstItem="Mhv-vo-PDL" firstAttribute="centerX" secondItem="R8R-uJ-OSt" secondAttribute="centerX" id="cT1-gI-Zfk"/>
                                             <constraint firstAttribute="trailing" secondItem="Mhv-vo-PDL" secondAttribute="trailing" id="fQF-qy-JvD"/>
                                             <constraint firstAttribute="bottom" secondItem="33R-B1-lM8" secondAttribute="bottom" id="nbd-Ss-nDe"/>
-                                            <constraint firstItem="33R-B1-lM8" firstAttribute="top" secondItem="Mhv-vo-PDL" secondAttribute="bottom" constant="14" id="q42-hO-VzM"/>
+                                            <constraint firstItem="33R-B1-lM8" firstAttribute="top" secondItem="Mhv-vo-PDL" secondAttribute="bottom" constant="10" id="q42-hO-VzM"/>
                                         </constraints>
                                     </view>
                                 </subviews>

@@ -11,6 +11,13 @@ import UIKit
 protocol DailyWeightDataSource: class {
     func dailyWeightChartUnit() -> String
     func dailyWeightChartPlotData() -> PlotData
+    func currentValue() -> String
+    func lastMonthValue() -> String
+    func averageYearValue() -> String
+}
+
+protocol DailyWeighDelegate: class {
+    func enterWeightTouched()
 }
 
 class DailyWeightTVCell: UITableViewCell {
@@ -24,6 +31,7 @@ class DailyWeightTVCell: UITableViewCell {
     @IBOutlet weak var lineCahrtView: LineChartContainerView!
     
     weak var dataSource: DailyWeightDataSource?
+    weak var delegate: DailyWeighDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +44,10 @@ class DailyWeightTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func enterWeightTouched(_ sender: Any) {
+        delegate?.enterWeightTouched()
+    }
+    
     // MARK: - Public
     
     func reloadData() {
@@ -43,5 +55,8 @@ class DailyWeightTVCell: UITableViewCell {
         
         lineCahrtView.setupData(plotData: dataSource.dailyWeightChartPlotData())
         unitLabel.text = dataSource.dailyWeightChartUnit()
+        currentDayValueLabel.text = dataSource.currentValue()
+        lastManyDaysValueLabel.text = dataSource.lastMonthValue()
+        annualAverageValueLabel.text = dataSource.averageYearValue()
     }
 }

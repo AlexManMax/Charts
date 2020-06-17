@@ -24,6 +24,7 @@
 		E06DFCC02497EAC400CB5F5D /* IChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06DFCBF2497EAC400CB5F5D /* IChart.swift */; };
 		E06DFCC3249934E900CB5F5D /* DailyWeightTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06DFCC1249934E900CB5F5D /* DailyWeightTVCell.swift */; };
 		E06DFCC4249934E900CB5F5D /* DailyWeightTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E06DFCC2249934E900CB5F5D /* DailyWeightTVCell.xib */; };
+		E06DFCC7249A9B5D00CB5F5D /* EnterWeightVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06DFCC6249A9B5D00CB5F5D /* EnterWeightVC.swift */; };
 		E09E742B2492B06700D75D00 /* PointValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09E742A2492B06700D75D00 /* PointValueView.swift */; };
 		E0BD2E0324882E3700B34B2A /* CollumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BD2E0224882E3700B34B2A /* CollumnView.swift */; };
 		E0BD2E072488327900B34B2A /* CollumnDayCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BD2E062488327900B34B2A /* CollumnDayCVCell.swift */; };
@@ -56,6 +57,7 @@
 		E06DFCBF2497EAC400CB5F5D /* IChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChart.swift; sourceTree = "<group>"; };
 		E06DFCC1249934E900CB5F5D /* DailyWeightTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeightTVCell.swift; sourceTree = "<group>"; };
 		E06DFCC2249934E900CB5F5D /* DailyWeightTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyWeightTVCell.xib; sourceTree = "<group>"; };
+		E06DFCC6249A9B5D00CB5F5D /* EnterWeightVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterWeightVC.swift; sourceTree = "<group>"; };
 		E09E742A2492B06700D75D00 /* PointValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointValueView.swift; sourceTree = "<group>"; };
 		E0BD2E0224882E3700B34B2A /* CollumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollumnView.swift; sourceTree = "<group>"; };
 		E0BD2E062488327900B34B2A /* CollumnDayCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollumnDayCVCell.swift; sourceTree = "<group>"; };
@@ -146,6 +148,15 @@
 			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
+		E06DFCC5249A9B3400CB5F5D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E06DFCB42496ACA500CB5F5D /* ReportDataVC.swift */,
+				E06DFCC6249A9B5D00CB5F5D /* EnterWeightVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		E0F0D3622486CB16009D54BC = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +176,7 @@
 		E0F0D36D2486CB16009D54BC /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				E06DFCC5249A9B3400CB5F5D /* ViewControllers */,
 				E06DFCB62496AE6900CB5F5D /* UITableViewCell */,
 				E050EFFA248FECF600B54B68 /* Helpers */,
 				E04FA684248AC4DC00678D21 /* Models */,
@@ -179,7 +191,6 @@
 				E0F0D37C2486CB18009D54BC /* Info.plist */,
 				E0C007DC248EBCB200B66A0A /* StartVC.swift */,
 				E09E742A2492B06700D75D00 /* PointValueView.swift */,
-				E06DFCB42496ACA500CB5F5D /* ReportDataVC.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -279,6 +290,7 @@
 				E04FA686248AC4F100678D21 /* ChartPoint.swift in Sources */,
 				E050F001248FF79600B54B68 /* LineChartContainerView.swift in Sources */,
 				E050EFFE248FF61100B54B68 /* GradientLineChartView.swift in Sources */,
+				E06DFCC7249A9B5D00CB5F5D /* EnterWeightVC.swift in Sources */,
 				E0BD2E09248838F800B34B2A /* CollumnChartView.swift in Sources */,
 				E0C007DD248EBCB200B66A0A /* StartVC.swift in Sources */,
 			);

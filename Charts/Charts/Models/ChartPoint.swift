@@ -48,4 +48,16 @@ struct PlotData {
         }
         return result
     }
+    
+    static func makeTestData() -> PlotData {
+        let points = Array<Int>(0...40).compactMap { (index) -> PlotPointData? in
+            guard let date = Calendar.current.date(byAdding: .day, value: index, to: Date()) else {
+                return nil
+            }
+            let value = CGFloat.random(in: 0...20)
+            return PlotPointData(value: value, date: date)
+            //            return PlotPointData(value: 0, date: date)
+        }
+        return PlotData(enterPoints: points, defaultYAxisMax: 10)
+    }
 }

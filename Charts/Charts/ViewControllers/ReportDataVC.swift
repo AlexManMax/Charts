@@ -12,6 +12,8 @@ class ReportDataVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var weightPlotData: PlotData = PlotData.makeTestData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,10 +82,10 @@ extension ReportDataVC: UITableViewDataSource {
             let cell = tableView.dequeReusable(cellType: DailyWeightTVCell.self, indexPath: indexPath)
             cell.tag = indexPath.row
             cell.dataSource = self
+            cell.delegate = self
             cell.reloadData()
             return cell
         }
-        
     }
 }
 
@@ -96,15 +98,59 @@ extension ReportDataVC: UITableViewDelegate {
     }
 }
 
+// MARK: - DailyWeightDataSource
+
 extension ReportDataVC: DailyWeightDataSource {
     func dailyWeightChartUnit() -> String {
         "(kg)"
     }
     
     func dailyWeightChartPlotData() -> PlotData {
-        makePlotData()
+        weightPlotData
     }
     
+    func currentValue() -> String {
+        guard let value = weightPlotData.enterPoints.last?.value else {
+            return "-"
+        }
+        return String(format: "%.1f", value)
+    }
+    
+    func lastMonthValue() -> String {
+        let count = weightPlotData.enterPoints.count
+        
+        let value: CGFloat = {
+            if count > 30 {
+                let firstIndex = count - 30 - 1
+                return weightPlotData.enterPoints[firstIndex...(count - 1)].map{ $0.value }.reduce(CGFloat(0), { $0 + $1})
+            } else {
+                return weightPlotData.enterPoints.map{ $0.value }.reduce(CGFloat(0), { $0 + $1})
+            }
+        }()
+        var result = value >= 0 ? "+" : "-"
+        result = result + " " + String(format: "%.1f", value)
+        return result
+    }
+    
+    func averageYearValue() -> String {
+        guard let last = weightPlotData.enterPoints.last else {
+            return "-"
+        }
+        let lastYear = last.date.year
+        let points = weightPlotData.enterPoints.filter{ $0.date.year == lastYear }
+        let summ = points.reduce(CGFloat(0), {$0 + $1.value})
+        let averageValue = summ / CGFloat(points.count)
+        return String(format: "%.1f", averageValue)
+    }
+}
+
+// MARK: - DailyWeighDelegate
+
+extension ReportDataVC: DailyWeighDelegate {
+    func enterWeightTouched() {
+        let vc = EnterWeightVC.build()
+        present(vc, animated: false, completion: nil)
+    }
 }
 
 enum ReportDataCellType: Int {
