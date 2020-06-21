@@ -238,6 +238,10 @@ class LineChartContainerView: UIView, IChart {
         let leftCellIndex = max(Int(leftBorder / GradientLineChartView.pointSpacing), 0)
         let rightCellIndex = min(Int(rightBorder / GradientLineChartView.pointSpacing), plotData.enterPoints.count - 1)
         
+        guard rightCellIndex >= leftCellIndex else {
+            return nil
+        }
+        
         var firstDayIndex: Int?
         
         Array<Int>(leftCellIndex...rightCellIndex).forEach { (index) in
@@ -254,6 +258,9 @@ class LineChartContainerView: UIView, IChart {
     }
 
     fileprivate func getLeftBorderCellDayData(_ contentOffset: CGPoint) -> (centerX: CGFloat, date: Date)? {
+        guard  !plotData.enterPoints.isEmpty else {
+            return nil
+        }
         let contentSize = scrollView.contentSize
         
         guard contentSize.width > 0 else { return nil }

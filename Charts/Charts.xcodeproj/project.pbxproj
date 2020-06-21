@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E020D15C249BEEFC0012E5BE /* WeightPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E020D15B249BEEFC0012E5BE /* WeightPicker.swift */; };
+		E020D15E249BEF080012E5BE /* WeightPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = E020D15D249BEF080012E5BE /* WeightPicker.xib */; };
+		E020D160249BF5650012E5BE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E020D15F249BF5650012E5BE /* UIView+Extension.swift */; };
+		E029406C249F5452007DD678 /* IMTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029406B249F5452007DD678 /* IMTView.swift */; };
+		E029406F249F571A007DD678 /* IMTTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029406D249F571A007DD678 /* IMTTVCell.swift */; };
+		E0294070249F571A007DD678 /* IMTTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E029406E249F571A007DD678 /* IMTTVCell.xib */; };
 		E04FA67B248ABB0800678D21 /* CollumnChartFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA67A248ABB0800678D21 /* CollumnChartFlowLayout.swift */; };
 		E04FA67F248ABB5700678D21 /* CollumnDayCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E04FA67D248ABB5700678D21 /* CollumnDayCVCell.xib */; };
 		E04FA683248AC2B800678D21 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04FA682248AC2B800678D21 /* UICollectionView+Extension.swift */; };
@@ -37,9 +43,17 @@
 		E0F0D3762486CB17009D54BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0F0D3742486CB17009D54BC /* Main.storyboard */; };
 		E0F0D3782486CB18009D54BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0F0D3772486CB18009D54BC /* Assets.xcassets */; };
 		E0F0D37B2486CB18009D54BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0F0D3792486CB18009D54BC /* LaunchScreen.storyboard */; };
+		E0FD0FE0249D503C0082F84E /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FD0FDF249D503C0082F84E /* CustomDatePicker.swift */; };
+		E0FD0FE2249D50460082F84E /* CustomDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0FD0FE1249D50460082F84E /* CustomDatePicker.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E020D15B249BEEFC0012E5BE /* WeightPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightPicker.swift; sourceTree = "<group>"; };
+		E020D15D249BEF080012E5BE /* WeightPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeightPicker.xib; sourceTree = "<group>"; };
+		E020D15F249BF5650012E5BE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		E029406B249F5452007DD678 /* IMTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMTView.swift; sourceTree = "<group>"; };
+		E029406D249F571A007DD678 /* IMTTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMTTVCell.swift; sourceTree = "<group>"; };
+		E029406E249F571A007DD678 /* IMTTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IMTTVCell.xib; sourceTree = "<group>"; };
 		E04FA67A248ABB0800678D21 /* CollumnChartFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollumnChartFlowLayout.swift; sourceTree = "<group>"; };
 		E04FA67D248ABB5700678D21 /* CollumnDayCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollumnDayCVCell.xib; sourceTree = "<group>"; };
 		E04FA682248AC2B800678D21 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
@@ -72,6 +86,8 @@
 		E0F0D3772486CB18009D54BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0F0D37A2486CB18009D54BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0F0D37C2486CB18009D54BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0FD0FDF249D503C0082F84E /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
+		E0FD0FE1249D50460082F84E /* CustomDatePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDatePicker.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +101,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E020D15A249BEEAE0012E5BE /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				E020D15B249BEEFC0012E5BE /* WeightPicker.swift */,
+				E020D15D249BEF080012E5BE /* WeightPicker.xib */,
+				E0FD0FDF249D503C0082F84E /* CustomDatePicker.swift */,
+				E0FD0FE1249D50460082F84E /* CustomDatePicker.xib */,
+				E029406B249F5452007DD678 /* IMTView.swift */,
+			);
+			path = UIViews;
+			sourceTree = "<group>";
+		};
 		E04FA681248AC29900678D21 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +138,7 @@
 			children = (
 				E050EFFB248FED1700B54B68 /* CubicCurveAlghoritm.swift */,
 				E06DFCBB2496B21800CB5F5D /* UITableView+Extension.swift */,
+				E020D15F249BF5650012E5BE /* UIView+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -144,6 +173,8 @@
 				E06DFCB82496AF8000CB5F5D /* SimpleChartTVCell.xib */,
 				E06DFCC1249934E900CB5F5D /* DailyWeightTVCell.swift */,
 				E06DFCC2249934E900CB5F5D /* DailyWeightTVCell.xib */,
+				E029406D249F571A007DD678 /* IMTTVCell.swift */,
+				E029406E249F571A007DD678 /* IMTTVCell.xib */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -176,6 +207,7 @@
 		E0F0D36D2486CB16009D54BC /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				E020D15A249BEEAE0012E5BE /* UIViews */,
 				E06DFCC5249A9B3400CB5F5D /* ViewControllers */,
 				E06DFCB62496AE6900CB5F5D /* UITableViewCell */,
 				E050EFFA248FECF600B54B68 /* Helpers */,
@@ -255,10 +287,13 @@
 			files = (
 				E06DFCBA2496AF8000CB5F5D /* SimpleChartTVCell.xib in Resources */,
 				E0F0D37B2486CB18009D54BC /* LaunchScreen.storyboard in Resources */,
+				E0294070249F571A007DD678 /* IMTTVCell.xib in Resources */,
 				E0F0D3782486CB18009D54BC /* Assets.xcassets in Resources */,
 				E06DFCC4249934E900CB5F5D /* DailyWeightTVCell.xib in Resources */,
+				E0FD0FE2249D50460082F84E /* CustomDatePicker.xib in Resources */,
 				E04FA67F248ABB5700678D21 /* CollumnDayCVCell.xib in Resources */,
 				E0F0D3762486CB17009D54BC /* Main.storyboard in Resources */,
+				E020D15E249BEF080012E5BE /* WeightPicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,8 +316,11 @@
 				E04FA67B248ABB0800678D21 /* CollumnChartFlowLayout.swift in Sources */,
 				E06DFCBE2497E93500CB5F5D /* ChartType.swift in Sources */,
 				E04FA688248BCE8500678D21 /* Date+Extension.swift in Sources */,
+				E029406C249F5452007DD678 /* IMTView.swift in Sources */,
 				E06DFCB324963B6900CB5F5D /* CGPoint+Extension.swift in Sources */,
+				E029406F249F571A007DD678 /* IMTTVCell.swift in Sources */,
 				E0BD2E072488327900B34B2A /* CollumnDayCVCell.swift in Sources */,
+				E020D160249BF5650012E5BE /* UIView+Extension.swift in Sources */,
 				E06DFCB52496ACA500CB5F5D /* ReportDataVC.swift in Sources */,
 				E0F0D3712486CB16009D54BC /* SceneDelegate.swift in Sources */,
 				E050EFFC248FED1700B54B68 /* CubicCurveAlghoritm.swift in Sources */,
@@ -292,7 +330,9 @@
 				E050EFFE248FF61100B54B68 /* GradientLineChartView.swift in Sources */,
 				E06DFCC7249A9B5D00CB5F5D /* EnterWeightVC.swift in Sources */,
 				E0BD2E09248838F800B34B2A /* CollumnChartView.swift in Sources */,
+				E020D15C249BEEFC0012E5BE /* WeightPicker.swift in Sources */,
 				E0C007DD248EBCB200B66A0A /* StartVC.swift in Sources */,
+				E0FD0FE0249D503C0082F84E /* CustomDatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

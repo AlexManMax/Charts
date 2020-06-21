@@ -21,6 +21,7 @@ class ReportDataVC: UIViewController {
         tableView.dataSource = self
         tableView.registerCellNib(cellType: SimpleChartTVCell.self)
         tableView.registerCellNib(cellType: DailyWeightTVCell.self)
+        tableView.registerCellNib(cellType: IMTTVCell.self)
     }
     
     // MARK: - Helpers
@@ -65,14 +66,14 @@ extension ReportDataVC: SimpleChartDataSource {
 
 extension ReportDataVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellType = ReportDataCellType(rawValue: indexPath.row)!
         
         switch cellType {
-        case .callories:
+        case .callories, .water:
             let cell = tableView.dequeReusable(cellType: SimpleChartTVCell.self, indexPath: indexPath)
             cell.dataSource = self
             cell.tag = indexPath.row
@@ -84,6 +85,9 @@ extension ReportDataVC: UITableViewDataSource {
             cell.dataSource = self
             cell.delegate = self
             cell.reloadData()
+            return cell
+        case .imt:
+            let cell = tableView.dequeReusable(cellType: IMTTVCell.self, indexPath: indexPath)
             return cell
         }
     }
@@ -156,6 +160,8 @@ extension ReportDataVC: DailyWeighDelegate {
 enum ReportDataCellType: Int {
     case callories
     case weight
+    case water
+    case imt
     
     var title: String {
         switch self {
@@ -163,6 +169,10 @@ enum ReportDataCellType: Int {
             return "Сожжено калорий (примерно)"
         case .weight:
             return "Вес"
+        case .water:
+            return "Вода"
+        case .imt:
+            return "ИМТ"
         }
     }
     
@@ -172,6 +182,10 @@ enum ReportDataCellType: Int {
             return "Ккал"
         case .weight:
             return "Kg"
+        case .water:
+            return "l"
+        case .imt:
+            return ""
         }
     }
     
@@ -181,15 +195,21 @@ enum ReportDataCellType: Int {
             return .line
         case.weight:
             return .line
+        case .water:
+            return .collumn
+        case .imt:
+            return .imt
         }
     }
     
     var cellHeight: CGFloat {
         switch self {
-        case .callories:
+        case .callories, .water:
             return SimpleChartTVCell.cellHeight
         case .weight:
             return DailyWeightTVCell.cellHeight
+        case .imt:
+            return IMTTVCell.cellHeight
         }
     }
 }

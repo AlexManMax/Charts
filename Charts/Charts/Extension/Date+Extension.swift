@@ -10,6 +10,18 @@ import Foundation
 
 extension Date {
     
+    static var monthArray: [String] {
+        let dateComponent = DateComponents(calendar: Calendar.current,year: 2020, month: 1, day: 1)
+        
+        guard let firstDate = dateComponent.date else {
+            return []
+        }
+        
+        return Array<Int>(0...11)
+            .compactMap{ Calendar.current.date(byAdding: .month, value: $0, to: firstDate) }
+            .map{ $0.monthName}
+    }
+    
     var day: Int {
         let calendar = Calendar.current
         return calendar.component(.day, from: self)
@@ -38,4 +50,12 @@ extension Date {
     var prevMonthName: String {
         Calendar.current.date(byAdding: .month, value: -1, to: self)!.monthName
     }
+    
+    var numDaysInMonth: Int {
+        let calendar = Calendar.current
+        let range = calendar.range(of: .day, in: .month, for: self)!
+        let numDays = range.count
+        return numDays
+    }
+    
 }

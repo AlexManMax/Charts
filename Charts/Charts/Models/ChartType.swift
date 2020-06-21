@@ -11,4 +11,5 @@ import Foundation
 enum ChartType {
     case line
     case collumn
+    case imt
 }
