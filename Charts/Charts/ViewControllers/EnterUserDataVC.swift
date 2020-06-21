@@ -8,18 +8,19 @@
 
 import UIKit
 
-extension EnterWeightVC {
-    static func build() -> EnterWeightVC {
+extension EnterUserDataVC {
+    static func build() -> EnterUserDataVC {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "EnterWeightVC") as! EnterWeightVC
+        let vc = storyboard.instantiateViewController(withIdentifier: "EnterWeightVC") as! EnterUserDataVC
         vc.modalPresentationStyle = .overFullScreen
         return vc
     }
 }
 
-final class EnterWeightVC: UIViewController {
+final class EnterUserDataVC: UIViewController {
 
-    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var firstTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     
     private let datePicker: CustomDatePicker = .fromNib()
@@ -31,7 +32,7 @@ final class EnterWeightVC: UIViewController {
 
         setupDatePicker()
         setupWeighPicker()
-        dateTextField.delegate = self
+        firstTextField.delegate = self
         weightTextField.delegate = self
     }
 
@@ -56,7 +57,7 @@ final class EnterWeightVC: UIViewController {
     @objc func startPickerTouched(_ sender: AnyObject) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
-        dateTextField.text = formatter.string(from: datePicker.date)
+        firstTextField.text = formatter.string(from: datePicker.date)
         view.endEditing(true)
     }
     
@@ -75,8 +76,8 @@ final class EnterWeightVC: UIViewController {
         datePicker.backgroundColor = #colorLiteral(red: 0.1838280857, green: 0.2111999989, blue: 0.2801737189, alpha: 1)
         datePicker.delegate = self
         
-        dateTextField.inputAccessoryView = toolBar
-        dateTextField.inputView = datePicker
+        firstTextField.inputAccessoryView = toolBar
+        firstTextField.inputView = datePicker
     }
     
     fileprivate func setupWeighPicker() {
@@ -99,18 +100,18 @@ final class EnterWeightVC: UIViewController {
 
 // MARK: - CustomDatePickerDelegate
 
-extension EnterWeightVC: CustomDatePickerDelegate {
+extension EnterUserDataVC: CustomDatePickerDelegate {
     func selectDate(_ date: Date) {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         
-        dateTextField.text = formatter.string(from: date)
+        firstTextField.text = formatter.string(from: date)
     }
 }
 
 // MARK: - WeightPickerDelegate
 
-extension EnterWeightVC: WeightPickerDelegate {
+extension EnterUserDataVC: WeightPickerDelegate {
     func didSelectWeight(_ weight: Double, unit: String) {
         var text = String(format: "%.1f", weight)
         text += " \(unit)"
@@ -119,7 +120,7 @@ extension EnterWeightVC: WeightPickerDelegate {
 }
 
 
-extension EnterWeightVC: UITextFieldDelegate {
+extension EnterUserDataVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.textColor = #colorLiteral(red: 0.06107478589, green: 0.7719560862, blue: 0.48526752, alpha: 1)
         textField.font = UIFont.systemFont(ofSize: 14, weight: .bold)

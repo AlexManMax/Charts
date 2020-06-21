@@ -87,10 +87,10 @@
             </objects>
             <point key="canvasLocation" x="54" y="1684"/>
         </scene>
-        <!--Enter WeightVC-->
+        <!--Enter User DataVC-->
         <scene sceneID="Ft7-DB-qvh">
             <objects>
-                <viewController storyboardIdentifier="EnterWeightVC" id="Zxb-oe-Qda" customClass="EnterWeightVC" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnterUserDataVC" id="Zxb-oe-Qda" customClass="EnterUserDataVC" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WG7-bA-YX8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,7 +263,8 @@
                         <viewLayoutGuide key="safeArea" id="YpA-02-Ssv"/>
                     </view>
                     <connections>
-                        <outlet property="dateTextField" destination="fkf-sk-h2r" id="nc0-eN-PUq"/>
+                        <outlet property="firstLabel" destination="rHh-f3-mkJ" id="hD9-uq-2UT"/>
+                        <outlet property="firstTextField" destination="fkf-sk-h2r" id="nc0-eN-PUq"/>
                         <outlet property="weightTextField" destination="1PL-ab-RN8" id="GHy-Eh-ePE"/>
                     </connections>
                 </viewController>

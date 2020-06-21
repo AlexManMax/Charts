@@ -10,14 +10,16 @@ import UIKit
 
 class IMTTVCell: UITableViewCell {
 
-    static let cellHeight: CGFloat = 145
+    static let cellHeight: CGFloat = 175
     
     private let valueViewSize = CGSize(width: 30, height: 20)
     
     @IBOutlet weak var imtView: IMTView!
     @IBOutlet weak var mainContentView: UIView!
+    @IBOutlet weak var currentImtColorView: UIView!
+    @IBOutlet weak var currentLevellabel: UILabel!
     
-    private var currentValue: CGFloat = 30
+    private var currentValue: IMTData = IMTData(value: 30)
     
     lazy var valueLabel: UILabel = {
         let label = UILabel()
@@ -46,18 +48,30 @@ class IMTTVCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        updateVlalueView(currentValue)
+        updateVlalueView(CGFloat(currentValue.value))
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         addSubview(valueView)
-        imtView.addElement(percentWidth: 1 / 25, color: #colorLiteral(red: 0.1819873154, green: 0.2744832635, blue: 0.8309889436, alpha: 1), leftText: "15", rightText: nil)
-        imtView.addElement(percentWidth: 2.5 / 25, color: #colorLiteral(red: 0.3122283816, green: 0.5883885026, blue: 0.9939255118, alpha: 1), leftText: "16", rightText: nil)
-        imtView.addElement(percentWidth: 6.5 / 25, color: #colorLiteral(red: 0.05180351436, green: 0.7864189744, blue: 0.8669361472, alpha: 1), leftText: "18.5", rightText: nil)
-        imtView.addElement(percentWidth: 5 / 25, color: #colorLiteral(red: 0.9944290519, green: 0.8150370717, blue: 0.1587764919, alpha: 1), leftText: "25", rightText: nil)
-        imtView.addElement(percentWidth: 5 / 25, color: #colorLiteral(red: 0.989759028, green: 0.6979183555, blue: 0.3566628695, alpha: 1), leftText: "30", rightText: nil)
-        imtView.addElement(percentWidth: 5 / 25, color: #colorLiteral(red: 0.9955756068, green: 0.2813150883, blue: 0.3798769116, alpha: 1), leftText: "35", rightText: "40")
+        let allRangeLength = CGFloat(IMTLevel.secondDegreeObesity.range.upperBound - IMTLevel.verySevereDepletion.range.lowerBound)
+        
+        IMTLevel.allCases.forEach { (level) in
+            let countSymbolAfterPoint1: Int = level.range.lowerBound - Float(Int(level.range.lowerBound)) > 0 ? 1 : 0
+            
+            let length = CGFloat(level.range.upperBound - level.range.lowerBound)
+            if level == .secondDegreeObesity {
+                imtView.addElement(percentWidth: length / allRangeLength,
+                                   color: level.color,
+                                   leftText: String(format: "%.\(countSymbolAfterPoint1)f", level.range.lowerBound),
+                                   rightText: String(format: "%.1f", level.range.upperBound))
+            } else {
+                imtView.addElement(percentWidth: length / allRangeLength,
+                                   color: level.color,
+                                   leftText: String(format: "%.\(countSymbolAfterPoint1)f", level.range.lowerBound),
+                                   rightText: nil)
+            }
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -66,11 +80,13 @@ class IMTTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setValue(_ value: CGFloat) {
-        guard value >= 15 && value <= 40 else { return }
+    func setValue(_ imtData: IMTData) {
+        guard imtData.value >= 15 && imtData.value <= 40 else { return }
         
-        currentValue = value
-        updateVlalueView(value)
+        currentValue = imtData
+        updateVlalueView(CGFloat(imtData.value))
+        currentImtColorView.backgroundColor = imtData.level.color
+        currentLevellabel.text = imtData.level.name
     }
     
     // MARK: - Private

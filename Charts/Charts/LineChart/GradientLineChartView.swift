@@ -124,6 +124,9 @@ class GradientLineChartView: UIView, IChart {
     }
 
     func setupData(plotData: PlotData) {
+        guard self.plotData.enterPoints != plotData.enterPoints else {
+            return
+        }
         self.plotData = plotData
         updateGradientLayer()
         updateChartLayer()

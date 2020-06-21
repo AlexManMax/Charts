@@ -10,6 +10,9 @@ import UIKit
 
 class IMTView: UIView {
     
+    private let labelFont = UIFont.systemFont(ofSize: 10, weight: .semibold)
+    let colorViewSideInset: CGFloat = 1
+    
     private lazy var stView: UIStackView = {
        let stView = UIStackView()
         stView.distribution = .equalSpacing
@@ -58,8 +61,8 @@ class IMTView: UIView {
         colorView.clipsToBounds = true
         
         NSLayoutConstraint.activate([
-            colorView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 1),
-            colorView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -1),
+            colorView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: colorViewSideInset),
+            colorView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -colorViewSideInset),
             colorView.topAnchor.constraint(equalTo: view.topAnchor),
             colorView.heightAnchor.constraint(equalToConstant: 8)
         ])
@@ -74,10 +77,10 @@ class IMTView: UIView {
         
 
         NSLayoutConstraint.activate([
-            leftLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 1),
+            leftLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: colorViewSideInset),
             leftLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            rightLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -1),
+            rightLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -colorViewSideInset),
             rightLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         return view
@@ -85,7 +88,7 @@ class IMTView: UIView {
     
     fileprivate func makeLabel(text: String?) -> UILabel{
         let leftLabel = UILabel()
-        leftLabel.font = UIFont.systemFont(ofSize: 10)
+        leftLabel.font = labelFont
         leftLabel.textColor = UIColor.white
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
         leftLabel.text = text

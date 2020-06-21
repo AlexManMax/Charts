@@ -13,7 +13,7 @@ struct ChartPoint {
     let yValue: CGFloat // [0, 1]
 }
 
-struct PlotPointData {
+struct PlotPointData: Equatable {
     let value: CGFloat
     let date: Date
 }

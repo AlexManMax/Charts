@@ -39,29 +39,6 @@ class ReportDataVC: UIViewController {
     }
 }
 
-// MARK: - SimpleChartDataSource
-
-extension ReportDataVC: SimpleChartDataSource {
-    func simpleChartTitle(_ index: Int) -> String {
-        let celltype = ReportDataCellType(rawValue: index)!
-        return celltype.title
-    }
-    
-    func simpleChartUnit(_ index: Int) -> String {
-        let celltype = ReportDataCellType(rawValue: index)!
-        return celltype.unit
-    }
-    
-    func simpleChartPlotData(_ index: Int) -> PlotData {
-        return makePlotData()
-    }
-    
-    func simpleChartType(_ index: Int) -> ChartType {
-        let celltype = ReportDataCellType(rawValue: index)!
-        return celltype.chartType
-    }
-}
-
 // MARK: - UITableViewDataSource
 
 extension ReportDataVC: UITableViewDataSource {
@@ -88,6 +65,7 @@ extension ReportDataVC: UITableViewDataSource {
             return cell
         case .imt:
             let cell = tableView.dequeReusable(cellType: IMTTVCell.self, indexPath: indexPath)
+            cell.setValue(.init(value: 30))
             return cell
         }
     }
@@ -148,11 +126,34 @@ extension ReportDataVC: DailyWeightDataSource {
     }
 }
 
+// MARK: - SimpleChartDataSource
+
+extension ReportDataVC: SimpleChartDataSource {
+    func simpleChartTitle(_ index: Int) -> String {
+        let celltype = ReportDataCellType(rawValue: index)!
+        return celltype.title
+    }
+    
+    func simpleChartUnit(_ index: Int) -> String {
+        let celltype = ReportDataCellType(rawValue: index)!
+        return celltype.unit
+    }
+    
+    func simpleChartPlotData(_ index: Int) -> PlotData {
+        return weightPlotData
+    }
+    
+    func simpleChartType(_ index: Int) -> ChartType {
+        let celltype = ReportDataCellType(rawValue: index)!
+        return celltype.chartType
+    }
+}
+
 // MARK: - DailyWeighDelegate
 
 extension ReportDataVC: DailyWeighDelegate {
     func enterWeightTouched() {
-        let vc = EnterWeightVC.build()
+        let vc = EnterUserDataVC.build()
         present(vc, animated: false, completion: nil)
     }
 }
